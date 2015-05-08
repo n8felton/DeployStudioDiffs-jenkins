@@ -1,4 +1,4 @@
 DeployStudioDiffs-jenkins
 =========================
 
-Jenkins config for the DeployStudioDiffs repo
+Jenkins config for the [DeployStudioDiffs repo](https://github.com/timsutton/DeployStudioDiffs).
