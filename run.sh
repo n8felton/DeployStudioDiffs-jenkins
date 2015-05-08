@@ -97,7 +97,7 @@ git commit -m "${VERSION}"
 git tag "v${VERSION}"
 #debug
 # git log
-git push
+git push --set-upstream origin master
 git push --tags
 cd "${WORKSPACE}"
 
