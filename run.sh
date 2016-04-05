@@ -90,24 +90,31 @@ tar -xzv \
     -C "${ADMIN_PKG_UNPACK_DEST}" \
     -f "${ADMIN_PKG_PATH}/Contents/Archive.pax.gz"
 
-# Do Git stuff
-cd "${GIT_CHECKOUT_DIR}"
-# Depending on Jenkins we might not actually be checked-out to master
-git checkout master
 
-for TRACKED_PATH in "${TRACKED_PATHS[@]}"; do
-    # Using --all since starting in 2.0, will also include removals
-    git add --all "${TRACKED_PATH}"
-done
+# Do Git repo stuff in a subshell
+(
+    cd "${GIT_CHECKOUT_DIR}" || exit
+    # Depending on Jenkins we might not actually be checked-out to master
+    git checkout master
 
-git commit -m "${VERSION}"
-git tag "v${VERSION}"
-#debug
-# git log
-git push --set-upstream origin master
-git push --tags
-cd "${WORKSPACE}"
+    for TRACKED_PATH in "${TRACKED_PATHS[@]}"; do
+        # Using --all since starting in 2.0, will also include removals
+        git add --all "${TRACKED_PATH}"
+    done
 
+    git commit -m "${VERSION}"
+    git tag "v${VERSION}"
+
+    # only push to repo if NO_PUSH isn't set, otherwise just print the full log
+    if [ -z "${NO_PUSH}" ]; then
+        echo "Pushing changes and tag to GitHub.."
+        git push --set-upstream origin master
+        git push --tags
+    else
+        echo "NO_PUSH was set, just displaying log"
+        git log -p
+    fi
+)
 
 # Clean up
 rm -rf "${GIT_CHECKOUT_DIR}"
