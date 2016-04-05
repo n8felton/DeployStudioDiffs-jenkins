@@ -125,6 +125,3 @@ fi
         git log -p
     fi
 )
-
-# Clean up
-rm -rf "${GIT_CHECKOUT_DIR}"
