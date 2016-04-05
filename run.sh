@@ -12,6 +12,7 @@
 # the public Git repo to be. In Jenkins, you would configure this as an additional
 # behavior for the Git plugin.
 GIT_CHECKOUT_DIR="repo"
+NO_PUSH=${NO_PUSH:-""}
 
 error_exit() {
     echo "$@" 1>&2
