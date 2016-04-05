@@ -122,6 +122,6 @@ fi
         git push --tags
     else
         echo "NO_PUSH was set, just displaying log"
-        git log -p
+        git log -p -1
     fi
 )
