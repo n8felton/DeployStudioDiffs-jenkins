@@ -18,6 +18,12 @@ error_exit() {
     exit 1
 }
 
+cleanup() {
+    hdiutil detach -quiet -force "$MOUNT" || echo > /dev/null
+}
+
+trap cleanup EXIT INT TERM
+
 # Sanity checks
 if [ -z "${BUILD_SPEC}" ]; then
     error_exit "You must define BUILD_SPEC in the environment for this script to run!"
@@ -101,8 +107,6 @@ git push --set-upstream origin master
 git push --tags
 cd "${WORKSPACE}"
 
-# Unmount
-hdiutil detach "${MOUNT}"
 
 # Clean up
 rm -rf "${GIT_CHECKOUT_DIR}"
