@@ -28,9 +28,10 @@ trap cleanup EXIT INT TERM
 if [ -z "${BUILD_SPEC}" ]; then
     error_exit "You must define BUILD_SPEC in the environment for this script to run!"
 fi
-if [ ! -d "${GIT_CHECKOUT_DIR}" ]; then
-    error_exit "Public Git repo should have been checked out to ${GIT_CHECKOUT_DIR}!"
-fi
+
+# Clone the diffs repo
+rm -rf "${GIT_CHECKOUT_DIR}"
+git clone ssh://git@github.com/timsutton/DeployStudioDiffs.git "${GIT_CHECKOUT_DIR}"
 
 # Set up some dirs
 INSTALLERS_DIR="$(pwd)/installers"
