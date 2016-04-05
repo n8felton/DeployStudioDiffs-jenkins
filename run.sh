@@ -12,6 +12,7 @@
 # the public Git repo to be. In Jenkins, you would configure this as an additional
 # behavior for the Git plugin.
 GIT_CHECKOUT_DIR="repo"
+PROPFILE=metadata.properties
 NO_PUSH=${NO_PUSH:-""}
 
 error_exit() {
@@ -125,3 +126,6 @@ fi
         git log -p -1
     fi
 )
+
+rm -rf "${PROPFILE}"
+echo "VERSION=$VERSION" > "${PROPFILE}"
