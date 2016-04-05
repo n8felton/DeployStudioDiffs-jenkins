@@ -85,7 +85,7 @@ hdiutil attach -mountpoint "${MOUNT}" "${OUTFILE}"
 [ "$?" -ne 0 ] && exit 1
 
 # Find and extract the Admin pkg
-ADMIN_PKG_PATH="$(find "${MOUNT}" -name "deploystudioAdmin.pkg" -print 2> /dev/null)"
+ADMIN_PKG_PATH="$(find "${MOUNT}" -name "deploystudioAdmin.pkg" -print)"
 echo "Found Admin pkg path at $ADMIN_PKG_PATH"
 tar -xzv \
     -C "${ADMIN_PKG_UNPACK_DEST}" \
