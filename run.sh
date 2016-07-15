@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # Downloads a DeployStudio installer dmg, extracts it and commits
 # certain paths to a Git repo so that changes can be more easily
@@ -83,7 +83,6 @@ fi
 # Mount it
 MOUNT=$(mktemp -d /tmp/dsdiff-XXXX)
 hdiutil attach -mountpoint "${MOUNT}" "${OUTFILE}"
-[ "$?" -ne 0 ] && exit 1
 
 # Find and extract the Admin pkg
 ADMIN_PKG_PATH="$(find "${MOUNT}" -name "deploystudioAdmin.pkg" -print)"
