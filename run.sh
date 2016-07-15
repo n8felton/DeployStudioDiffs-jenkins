@@ -91,15 +91,13 @@ tar -xzv \
     -C "${ADMIN_PKG_UNPACK_DEST}" \
     -f "${ADMIN_PKG_PATH}/Contents/Archive.pax.gz"
 
-# extract the proper "build number" if we're just doing stable
+# extract the proper "build number" to append to the version
 # final tag will look like: 'v1.7.3-160404'
-if [ "$BUILD_SPEC" == "Stable" ]; then
-    BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "${GIT_CHECKOUT_DIR}/Packages/Admin/DeployStudio Admin.app/Contents/Info.plist")
-    if [ -z "${BUILD_NUMBER}" ]; then
-        error_exit "Couldn't extract a build number from DeployStudio Admin.app Info.plist!"
-    fi
-    VERSION="${VERSION}-${BUILD_NUMBER}"
+BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "${GIT_CHECKOUT_DIR}/Packages/Admin/DeployStudio Admin.app/Contents/Info.plist")
+if [ -z "${BUILD_NUMBER}" ]; then
+    error_exit "Couldn't extract a build number from DeployStudio Admin.app Info.plist!"
 fi
+VERSION="${VERSION}-${BUILD_NUMBER}"
 
 # Do Git repo stuff in a subshell
 (
