@@ -85,7 +85,10 @@ MOUNT=$(mktemp -d /tmp/dsdiff-XXXX)
 hdiutil attach -mountpoint "${MOUNT}" "${OUTFILE}"
 
 # Find and extract the Admin pkg
+# (find may complain about access to .Trashes so we ignore errors here)
+set +e
 ADMIN_PKG_PATH="$(find "${MOUNT}" -name "deploystudioAdmin.pkg" -print)"
+set -e
 echo "Found Admin pkg path at $ADMIN_PKG_PATH"
 tar -xzv \
     -C "${ADMIN_PKG_UNPACK_DEST}" \
