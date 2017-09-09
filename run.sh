@@ -2,7 +2,7 @@
 #
 # Downloads a DeployStudio installer dmg, extracts it and commits
 # certain paths to a Git repo so that changes can be more easily
-# tracked. Used for https://github.com/timsutton/DeployStudioDiffs
+# tracked. Used for https://github.com/n8felton/DeployStudioDiffs
 #
 # This script assumes you define BUILD_SPEC as an environment variable.
 # It can be "Nightly", "Release" to get the latest from that branch,
@@ -33,7 +33,7 @@ fi
 
 # Clone the diffs repo
 rm -rf "${GIT_CHECKOUT_DIR}"
-git clone ssh://git@github.com/timsutton/DeployStudioDiffs.git "${GIT_CHECKOUT_DIR}"
+git clone ssh://git@github.com/n8felton/DeployStudioDiffs.git "${GIT_CHECKOUT_DIR}"
 
 # Set up some dirs
 INSTALLERS_DIR="$(pwd)/installers"

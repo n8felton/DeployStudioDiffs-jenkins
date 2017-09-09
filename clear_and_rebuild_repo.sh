@@ -27,12 +27,12 @@ Each release is added as a single, tagged commit. You can simply compare by comm
 
 For example, to compare 1.6.4-NB140227 to 1.6.4-NB140303, just refer to these release names prepended with a 'v':
 
-[https://github.com/timsutton/DeployStudioDiffs/compare/v1.6.4-NB140227...v1.6.4-NB140303](https://github.com/timsutton/DeployStudioDiffs/compare/v1.6.4-NB140227...v1.6.4-NB140303)
+[https://github.com/n8felton/DeployStudioDiffs/compare/v1.6.4-NB140227...v1.6.4-NB140303](https://github.com/n8felton/DeployStudioDiffs/compare/v1.6.4-NB140227...v1.6.4-NB140303)
 
 EOF
 
 git init
-git remote add origin https://github.com/timsutton/DeployStudioDiffs
+git remote add origin https://github.com/n8felton/DeployStudioDiffs
 git add README.md
 git commit -m "Readme"
 git push --force origin master
